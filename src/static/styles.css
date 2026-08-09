@@ -665,10 +665,240 @@ footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Announcement banners */
+#announcement-banners {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .announcement-banner {
-  background-color: #4caf50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--success) 0%, #388e3c 100%);
   color: white;
   text-align: center;
-  padding: 15px;
-  font-weight: bold;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: bannerSlideIn 0.4s ease;
+}
+
+@keyframes bannerSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Announcements modal */
+.announcements-modal-content {
+  max-width: 560px;
+  width: 95%;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.announcements-loading {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px 0;
+}
+
+#announcements-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.announcement-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: box-shadow 0.2s;
+}
+
+.announcement-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.announcement-item.expired {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.announcement-item-message {
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.announcement-item-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.announcement-item-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-active {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.badge-expired {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+.badge-scheduled {
+  background: var(--warning-light);
+  color: #856404;
+}
+
+.announcement-item-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.edit-announcement-btn,
+.delete-announcement-btn {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-announcement-btn {
+  background: var(--info-light);
+  color: var(--info);
+}
+
+.edit-announcement-btn:hover {
+  background: #bee5eb;
+}
+
+.delete-announcement-btn {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+.delete-announcement-btn:hover {
+  background: #f5c6cb;
+}
+
+.add-announcement-btn {
+  align-self: flex-start;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-announcement-btn:hover {
+  background: var(--primary-light);
+}
+
+#announcement-form-container {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+#announcement-form-container h4 {
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.announcement-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.announcement-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.optional {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: var(--text-secondary);
+}
+
+.required {
+  color: var(--error);
+}
+
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(83, 75, 174, 0.1);
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(83, 75, 174, 0.1);
+}
+
+.no-announcements {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 16px 0;
+}
+
+@media (max-width: 480px) {
+  .announcement-dates {
+    grid-template-columns: 1fr;
+  }
 }
